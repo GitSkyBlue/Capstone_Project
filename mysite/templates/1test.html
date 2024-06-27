@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .area1{
+            border: 1px;
+            background-color: white;
+            border-style: solid;
+            color: black;
+            width:130px;
+            height:180px;
+            margin-bottom:2px;
+            font-size: 20px;
+            display: inline-block; /* 인라인 블록으로 배치 */
+        }
+        .header-container {
+            padding-left:120px;
+        }
+        .button-container {
+            background-color: #f1f1f1;
+            border:2px solid;
+            border-radius: 20px;
+            padding-top:50px;
+            padding-bottom:20px;
+            padding-left:30px;
+            padding-right:24px;
+            display: grid; /* 그리드 시스템 적용 */
+            grid-template-columns: repeat(5, 1fr); /* 5개의 열 생성 */
+        }
+        .button-container img {
+            border:1px solid;
+        }
+        .subject-intro {
+            background-color: #f1f1f1;
+            border:2px solid;
+            border-radius: 20px;
+            margin-bottom: 10px;
+        }
+        .content {
+            padding-left:120px;
+        }
+        .content-container {
+            margin-left:115px;
+            padding-left:5px;
+            width:720px;
+            padding-bottom:1px;
+            text-align: center; /* 버튼을 가운데 정렬 */
+        }
+        td {
+            font-size:20px;
+            font-weight: bold;
+        }
+        .menu {
+            width:700px;
+            background-color: #f1f1f1;
+            border:2px solid;
+            border-radius: 20px;
+            margin-bottom: 10px;
+            padding: 10px;
+        }
+
+        .menu ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .menu ul li {
+            width:200px;
+            text-align: center;
+            /* padding-right: 210px; */
+            display: inline-block;
+            margin-left:16px;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .menu ul li a {
+            width:202px;
+            text-decoration: none;
+            color: black;
+        }
+
+        .menu ul li:hover {
+            background-color: orange;
+            color: #fff;
+        }
+
+        footer {
+            width: 100%;
+            height: 100px; /* 내용물에 따라 알맞는 값 설정 */
+            bottom: 0px;
+            position: absolute;
+        }
+        #footer_texts span{
+            padding-left: 50px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+{% load static %}
+<div id="header">
+    <div class="header-container">
+        <!-- <p style="display:inline; padding-left:3px; padding-right:12px;"><img src="kdu.jpg" width="250" height="70"></p>
+        <p style="display:inline"><img src="att.jpg" width="450" height="60" style="margin-bottom: 7px;"></p> -->
+
+        <p style="display:inline; padding-left:3px; padding-right:15px;"><img src="{% static 'kdu.jpg' %}" width="250" height="70"></p>
+        <p style="display:inline"><img src="{% static 'att.jpg' %}" width="450" height="65"></p>
+        <div class="menu">
+            <ul>
+              <li><a href="#">마이페이지</a></li>
+              <li><a href="#">강의출결</a></li>
+              <li style="padding-right:0px;"><a href="#">공지사항</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div id="content">
+    <div class="content-container">
+        <div class="subject-intro">
+            <table width="699" border="0" cellpadding="0" cellspacing="0" class="studentclassbg" id="tablefirst">
+                <tr>
+                    <td align="center" valign="middle"><table width="658" border="0" cellspacing="0" cellpadding="0">
+                    <tr align="left">
+                      <td height="50" colspan="2">&nbsp;강의명 : 캡스톤디자인 </td>
+                    </tr>
+                    <tr>
+                      <td width="331" height="50" align="left">&nbsp;강의일시 : 수요일 10:00 ~ 13:00</td>
+                      <td width="331" align="left">&nbsp;교수명 : 최진일</td>
+                    </tr>
+                    <tr>
+                      <td height="50" align="left">&nbsp;개설학과 : 소프트웨어학과</td>
+                    </tr>
+                         
+                  </table>
+                </tr>
+            </table>
+        </div>
+        <p class="text" style="position: absolute; top: 340px; left:160px;">● 사진을 클릭하시면 출석 > 지각 > 결석이 반전되며 처리 됩니다.</p>
+        <button style="margin-left:450px; margin-bottom: 8px;"><strong>일괄처리</strong></button>
+        <button onclick="saving();"><strong>변경완료</strong></button>
+        <button onclick="check();"><strong>업데이트</strong></button>
+        <div class="button-container">
+            <button id="Kang_Min_Jun" class="area1" onclick="colorChange('0');">
+                <img src="{% static 'c.PNG' %}" width="100" height="100" style="margin-bottom: 5px; margin-top: 10px;">
+                1821001<br>강민준
+            </button>
+            <button id="Blue" class="area1" onclick="colorChange('1');">
+                <img src="{% static 'c.PNG' %}" width="100" height="100" style="margin-bottom: 5px; margin-top: 10px;">
+                1821002<br>김서연
+            </button>
+            <button id="Gong" class="area1" onclick="colorChange('2');">
+                <img src="{% static 'c.PNG' %}" width="100" height="100" style="margin-bottom: 5px; margin-top: 10px;">
+                1821003<br>박서준
+            </button>
+            <button id="Shin_Seo_Yoon" class="area1" onclick="colorChange('3');">
+                <img src="{% static 'c.PNG' %}" width="100" height="100" style="margin-bottom: 5px; margin-top: 10px;">
+                1821004<br>신서윤
+            </button>
+            <button id="Choi" class="area1" onclick="colorChange('4');">
+                <img src="{% static 'c.PNG' %}" width="100" height="100" style="margin-bottom: 5px; margin-top: 10px;">
+                1821005<br>이시우
+            </button>
+            <button id="Trump" class="area1" onclick="colorChange('5');">
+                <img src="{% static 'c.PNG' %}" width="100" height="100" style="margin-bottom: 5px; margin-top: 10px;">
+                1821006<br>장지우
+            </button>
+            <button id="A" class="area1" onclick="colorChange('6');">
+                <img src="{% static 'c.PNG' %}" width="100" height="100" style="margin-bottom: 5px; margin-top: 10px;">
+                1821007<br>정도윤
+            </button>
+            <button id="Ji" class="area1" onclick="colorChange('7');">
+                <img src="{% static 'c.jpg' %}" width="100" height="100" style="margin-bottom: 5px; margin-top: 10px;">
+                1821034<br>지용욱
+            </button>
+            <button id="C" class="area1" onclick="colorChange('8');">
+                <img src="{% static 'c.PNG' %}" width="100" height="100" style="margin-bottom: 5px; margin-top: 10px;">
+                1821035<br>최서현
+            </button>
+            <button id="D" class="area1" onclick="colorChange('9');">
+                <img src="{% static 'c.PNG' %}" width="100" height="100" style="margin-bottom: 5px; margin-top: 10px;">
+                1821037<br>하예준
+            </button>
+        </div>
+    </div>
+</div>
+</body>
+<footer>
+    <hr style="border: 1px color=black;" width="100%">
+    <div id="footer_texts">
+        <span>만든이 : SkyBlue 학과 : 소프트웨어학과</span><br/>
+        <span>E-Mail : hiskyb@naver.com Tel : 010-0000-0000</span><br/>
+        <span>Copyright 2023. SkyBlue. All Rights Reserved.</span>
+    </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    var names = new Array("Kang_Min_Jun", "Blue", "Gong", "Shin_Seo_Yoon", "Choi", "Trump", "A", "Ji", "C", "D");
+    var num = new Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
+    var color = new Array("yellow", "skyblue", "red");
+    var i = 0;
+    var intervalId = setInterval(function() {saving(); i++;
+    // if (i === 60) {
+    //     clearInterval(intervalId);
+    // }
+    }, 2000);
+
+    function colorChange(id){
+        document.getElementById(names[id]).style.backgroundColor = color[num[id] % 3];
+        num[id]++;
+    };
+
+    function saving(){
+        $.ajax({url: 'save/', method: 'GET'});
+    }
+    
+    function attendance(i) {
+        var xhr = new XMLHttpRequest();
+        var path = 'api/data/' + String(i);
+        xhr.open('GET', path, true);
+
+        xhr.onload = function() {
+            if (xhr.status >= 200 && xhr.status < 400) {
+                var data = JSON.parse(xhr.responseText);
+                var c = data.name;
+                var t = data.time;
+                // if (t > "202306121219") {
+                //     document.getElementById(c).style.backgroundColor = 'yellow';
+                // }
+                // else {        
+                document.getElementById(c).style.backgroundColor = 'skyblue';
+                // }
+            } else {
+                console.error('Request failed. Error:', xhr.status);
+            }
+        }
+
+        xhr.send();
+    }
+
+    function check(){
+        var c = new XMLHttpRequest();
+        c.open('GET', 'count/', true)
+        c.onload = function() {
+            if (c.status >= 200 && c.status < 400) {
+            var data = JSON.parse(c.responseText);
+            const pk_array = data;
+            for(i = 0; i < pk_array.length; i++) {
+                attendance(pk_array[i]);
+            }
+            } else {
+            console.error('Request failed. Error:', c.status);
+            }
+        }
+        c.send()
+    }
+</script>
